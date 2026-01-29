@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Coming Soon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+            background-size: 600% 600%;
+            animation: gradientBG 10s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .typing {
+            font-size: 1.3rem;
+            color: #00eaff;
+            min-height: 30px;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+
+        .time-box span {
+            font-size: 1.8rem;
+            display: block;
+        }
+
+        .time-box small {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🚀 Coming Soon</h1>
+    <div class="typing" id="typing"></div>
+
+    <div class="countdown">
+        <div class="time-box">
+            <span id="days">00</span>
+            <small>Days</small>
+        </div>
+        <div class="time-box">
+            <span id="hours">00</span>
+            <small>Hours</small>
+        </div>
+        <div class="time-box">
+            <span id="minutes">00</span>
+            <small>Minutes</small>
+        </div>
+        <div class="time-box">
+            <span id="seconds">00</span>
+            <small>Seconds</small>
+        </div>
+    </div>
+
+    <div class="footer">
+        My project is under development. Stay tuned ✨
+    </div>
+</div>
+
+<script>
+    // Typing effect
+    const text = "Something awesome is on the way...";
+    let index = 0;
+    function typeEffect() {
+        if (index < text.length) {
+            document.getElementById("typing").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeEffect, 80);
+        }
+    }
+    typeEffect();
+
+    // Countdown timer
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 10); // change days here
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        const days = Math.floor(distance / (1 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
